@@ -25,7 +25,7 @@ view: transactions {
   }
   dimension_group: detection_timestamp {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw, time, date, week, month, quarter, year, hour, hour_of_day]
     datatype: datetime
     sql: ${TABLE}.detection_timestamp ;;
   }
