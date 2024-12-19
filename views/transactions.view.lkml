@@ -72,4 +72,17 @@ view: transactions {
     type: count
     drill_fields: [transaction_id, merchants.merchant_name, merchants.merchant_id, fraud_alerts.count]
   }
+  measure: fraud_rate {
+    type: number
+    value_format_name: percent_2
+    sql: SAFE_DIVIDE(
+      SUM(CASE WHEN ${is_fraudulent} THEN 1 ELSE 0 END),
+      COUNT(*)
+    ) ;;
+  }
+  measure: total_amount {
+    type: sum
+    sql: ${amount} ;;
+    value_format_name: usd
+  }
 }
